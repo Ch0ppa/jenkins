@@ -1,0 +1,13 @@
+pipeline {
+    agent {
+        label 'windows-shared'
+    }
+    environment {
+        PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
+    }
+        stage('Building the project') {
+            steps {
+                bat "\"${tool 'MSBuild_VS2019community'}\\msbuild.exe\" ${PROJECT_SOLUTION_NAME} -r -m -v:q -t:rebuild /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DeployOnBuild=true /p:PackageLocation=${WORKSPACE}\\project.zip"
+                }
+            }
+}
