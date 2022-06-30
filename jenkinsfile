@@ -9,7 +9,7 @@ pipeline {
 	stages {
 	stage('Cleanup') {
             steps {
-                bat "rmdir -r C:\\Jenkins\\workspace\\testpipeline\\"
+                bat "rmdir -r C:\\Jenkins\\workspace\\testpipeline\\jenkins\\"
                 }}
 	stage('Checkout') {
             steps {
