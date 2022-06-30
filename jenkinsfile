@@ -24,4 +24,4 @@ pipeline {
                 archiveArtifacts artifacts: '${WORKSPACE}\${BUILD_NUMBER}.zip', followSymlinks: false
                 }}	
             }}
-}
+
