@@ -10,6 +10,9 @@ pipeline {
 	stage('Cleanup') {
             steps {
                 bat "rmdir -r C:\\Jenkins\\workspace\\testpipeline\\jenkins\\"
+		catchError(stageResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
                 }}
 	stage('Checkout') {
             steps {
