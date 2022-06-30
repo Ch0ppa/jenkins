@@ -2,6 +2,7 @@ pipeline {
     agent {
         label 'windows-shared'
     }
+    options { skipDefaultCheckout() }
     environment {
         PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
     }
