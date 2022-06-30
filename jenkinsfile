@@ -7,6 +7,11 @@ pipeline {
         PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
     }
 	stages {
+	stage('Cleanup') {
+            steps {
+                bat "rmdir -r C:\\Jenkins\\workspace\\testpipeline\\jenkins\\"
+
+                }}
 	stage('Checkout') {
             steps {
                 bat "git clone https://github.com/Ch0ppa/jenkins.git"
