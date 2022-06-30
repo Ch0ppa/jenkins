@@ -18,7 +18,7 @@ pipeline {
         stage('Building the project') {
             steps {
                 bat "\"${tool 'MSBuild_VS2019community'}\\msbuild.exe\" ${WORKSPACE}\\${BUILD_NUMBER}\\${PROJECT_SOLUTION_NAME} -r -m -v:q -t:rebuild /p:RestorePackagesConfig=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DeployOnBuild=true /p:PackageLocation=${WORKSPACE}\\${BUILD_NUMBER}.zip"
-                }
+                }}
 	stage('Archive') {
             steps {
                 archiveArtifacts artifacts: '${WORKSPACE}\${BUILD_NUMBER}.zip', followSymlinks: false
