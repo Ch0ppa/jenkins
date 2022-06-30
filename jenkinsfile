@@ -13,8 +13,7 @@ pipeline {
                 }}
 	stage('checkDir') {
             steps {
-                bat "cd ${WORKSPACE}\\${BUILD_NUMBER}" 
-		bat "dir"
+                bat "dir ${WORKSPACE}\\${BUILD_NUMBER}" 
                 }}	
         stage('Building the project') {
             steps {
