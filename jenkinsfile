@@ -25,7 +25,7 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                container('awscli') {
+                Jenkins-shared-windows-ec2('awscli') {
       			sh '''
       			echo "Publishing Lambda Layer to S3"
       			aws s3 cp "${BUILD_NUMBER}.zip" "s3://transfer8884/stuff/${BUILD_NUMBER}.zip"
