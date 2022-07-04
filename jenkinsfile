@@ -21,7 +21,7 @@ pipeline {
                 }}
 	stage('Archive') {
             steps {
-                archiveArtifacts artifacts: "${WORKSPACE}\\${BUILD_NUMBER}.zip", followSymlinks: false
+                archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
                 }}	
             }}
 
