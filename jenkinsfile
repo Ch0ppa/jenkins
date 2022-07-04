@@ -27,6 +27,6 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                aws s3 cp ${WORKSPACE}/${BUILD_NUMBER}.zip s3://transfer8884/stuff/
+                aws s3 cp '${WORKSPACE}/${BUILD_NUMBER}.zip' 's3://transfer8884/stuff/'
 		  }}	
             }}
