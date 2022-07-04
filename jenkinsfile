@@ -24,4 +24,9 @@ pipeline {
                 archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
                 }}	
             }}
+	stage('TransferToS3') {
+            steps {
+                PowerShell "aws s3 cp s3://transfer8884/stuff/"${BUILD_NUMBER}.zip" "${BUILD_NUMBER}.zip""
+                }}	
+            }}
 
