@@ -2,8 +2,7 @@ pipeline {
     agent {
         label 'windows-shared'
     }
-    options { skipDefaultCheckout(),
-    		withAWS(profile:'AKIAZQKGPEGFQKCFTO5U')}
+    options {skipDefaultCheckout(), withAWS(profile:'AKIAZQKGPEGFQKCFTO5U')}
     environment {
         PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
     }
