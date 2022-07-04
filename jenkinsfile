@@ -26,3 +26,4 @@ pipeline {
                 archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
                 }}
 		}
+		}
