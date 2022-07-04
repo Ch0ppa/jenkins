@@ -25,3 +25,4 @@ pipeline {
             steps {
                 archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
                 }}
+		}
