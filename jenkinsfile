@@ -26,7 +26,12 @@ pipeline {
             }}
 	stage('TransferToS3') {
             steps {
-                PowerShell "aws s3 cp s3://transfer8884/stuff/"${BUILD_NUMBER}.zip" "${BUILD_NUMBER}.zip""
+                container('awscli') {
+      			sh '''
+      			echo "Publishing Lambda Layer to S3"
+      			aws s3 cp "${BUILD_NUMBER}.zip" "s3://transfer8884/stuff/${BUILD_NUMBER}.zip"
+
+ 			'''
                 }}	
             }}
 
