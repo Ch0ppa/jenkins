@@ -2,7 +2,8 @@ pipeline {
     agent {
         label 'windows-shared'
     }
-    options { skipDefaultCheckout() }
+    options { skipDefaultCheckout(),
+    		withAWS(profile:'AKIAZQKGPEGFQKCFTO5U')}
     environment {
         PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
     }
@@ -25,12 +26,7 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                withAwsCli {
-      			sh '''
-      			echo "Publishing Lambda Layer to S3"
-      			aws s3 cp "${BUILD_NUMBER}.zip" "s3://transfer8884/stuff/${BUILD_NUMBER}.zip"
-
- 			'''
+                s3Upload (pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'${BUILD_NUMBER}.zip', bucket:'transfer8884', path:'transfer8884/stuff/${BUILD_NUMBER}.zip')
                 }}	
             }}
 
