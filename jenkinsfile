@@ -29,3 +29,4 @@ pipeline {
             steps {
                  AWS("--region=eu-west-1 s3 ls")
             	}}
+}
