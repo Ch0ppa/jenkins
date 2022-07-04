@@ -27,7 +27,7 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                  aws("--region=eu-west-1 s3 ls")
+                powershell "aws s3 ls s3://transfer8884/stuff/"
             	}}
 }
 }
