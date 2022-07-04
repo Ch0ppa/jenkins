@@ -27,7 +27,7 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                powershell "$command = "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12"`
+                powershell "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12"`
 				Invoke-Expression $command`
 				Invoke-WebRequest -Uri "https://awscli.amazonaws.com/AWSCLIV2.msi" -Outfile C:\AWSCLIV2.msi`
 				$arguments = "/i `"C:\AWSCLIV2.msi`" /quiet"`
