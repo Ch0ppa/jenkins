@@ -27,6 +27,6 @@ pipeline {
                 }}	
 	stage('TransferToS3') {
             steps {
-                s3 (pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'${BUILD_NUMBER}.zip', bucket:'transfer8884', path:'transfer8884/stuff/${BUILD_NUMBER}.zip')
-                }}	
+                aws s3 cp “${WORKSPACE}\\${BUILD_NUMBER}.zip” s3://transfer8884/stuff/
+		  }}	
             }}
