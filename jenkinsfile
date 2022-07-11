@@ -6,35 +6,24 @@ pipeline {
     	skipDefaultCheckout()
     }
     environment {
-        PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
+         PROJECT_SOLUTION_NAME = 'aspnet-get-started.sln'
     }
 	stages {
-        stage('Checkout') {
+	stage('Checkout') {
             steps {
                 bat "git clone https://github.com/Ch0ppa/jenkins.git ${BUILD_NUMBER}"
-            }
-        }
-        stage('checkDir') {
+                }}
+	stage('checkDir') {
             steps {
                 bat "dir ${WORKSPACE}\\${BUILD_NUMBER}" 
-            }
-        }	
+                }}	
         stage('Building the project') {
             steps {
                 bat "\"${tool 'MSBuild_VS2019community'}\\msbuild.exe\" ${WORKSPACE}\\${BUILD_NUMBER}\\${PROJECT_SOLUTION_NAME} -r -m -v:q -t:rebuild /p:RestorePackagesConfig=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DeployOnBuild=true /p:PackageLocation=${WORKSPACE}\\${BUILD_NUMBER}.zip"
-            }
-        }
-        stage('Archive') {
+                }}
+	stage('Archive') {
             steps {
                 archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
-            }
-        }
-        stage('Codedeploy') {
-            steps {
-                sh 'aws deploy create-deployment --application-name testedeployment --deployment-group-name test --s3-location bucket=rmfm-s3-dev-ie-deploy,bundleType=zip,key=testpipeline/BUILD_NUMBER/artifacts/BUILD_NUMBER.zip'
-            }
-        }
-    }
-}
-
-BUILD_NUMBER
+                }}
+		}
+		}
